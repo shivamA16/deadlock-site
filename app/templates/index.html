@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block main %}
+<section class="wrap hero" aria-labelledby="hero-h">
+  <div class="hero-copy">
+    <h1 id="hero-h" class="display display-xl">Solve real problems.<br>Get ranked.<br>Get noticed.</h1>
+    <p class="lede">Deadlock is a national season of solo build weekends for Canadian students. Each Open gives you one real problem from a Canadian business, nonprofit or town, one weekend to build it, and a rank that hiring teams trust.</p>
+    <div class="hero-actions">
+      <a href="/register" class="btn btn-accent btn-lg">Enter for {{ event.price_label }}</a>
+      <a href="#how" class="text-link">See how an Open works</a>
+    </div>
+    <p class="small">{{ event.name }}, {{ event.dates_label }}. Open to every university and college student in Canada.</p>
+  </div>
+
+  <figure class="hero-card">
+    <div class="builder-card" role="img" aria-label="Sample Builder Card: national rank 7 of 312, Dalhousie University, Nova Scotia, score 88 out of 100">
+      <div class="card-top"><strong>Deadlock</strong><span>{{ event.full_name }}</span></div>
+      <div class="card-body">
+        <div class="card-rank">
+          <div><span class="rank">7</span><span class="label">National rank of 312</span></div>
+          <div><span class="score">88</span><span class="label">out of 100</span></div>
+        </div>
+        <div class="card-name"><strong>Amara Okafor</strong><span>Dalhousie University, Nova Scotia</span></div>
+        <dl class="card-scores">
+          <div><dt>Solves the brief</dt><dd>27 / 30</dd></div>
+          <div><dt>Technical craft</dt><dd>26 / 30</dd></div>
+          <div><dt>Product judgement</dt><dd>18 / 20</dd></div>
+          <div><dt>Demo clarity</dt><dd>17 / 20</dd></div>
+        </dl>
+        <div class="card-foot"><span>1st in Nova Scotia</span><span>Rating 1,642</span></div>
+      </div>
+    </div>
+    <figcaption>Every entrant gets a Builder Card. Sample shown.</figcaption>
+  </figure>
+</section>
+
+<section class="band-light" aria-labelledby="loop-h">
+  <div class="wrap band loop">
+    <h2 id="loop-h" class="display display-lg">No experience, no job.<br>No job, no experience.</h2>
+    <div class="loop-copy">
+      <p>That loop is a deadlock. An Open breaks it: a real brief from a real problem owner, a ranked result, and a scorecard you can put in front of an employer.</p>
+      <p class="muted">It's experience, with your name on it and nobody else's.</p>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="wrap section" aria-labelledby="how-h">
+  <div class="section-head">
+    <h2 id="how-h" class="heading">One brief. One weekend. Just you.</h2>
+    <p>Everything happens online, from wherever you are. All times are Eastern.</p>
+  </div>
+  <ol class="weekend">
+    <li><span class="when">Friday 8pm</span><span class="what">The brief drops</span><span class="detail">One problem, with the owner's real data and a short video from them explaining what they need.</span></li>
+    <li><span class="when">Saturday 2pm</span><span class="what">The Pivot</span><span class="detail">A requirement changes for everyone at once, the way real clients change their minds.</span></li>
+    <li><span class="when">Sunday 11pm</span><span class="what">Submissions close</span><span class="detail">That's 8pm in Vancouver, so the west coast gets a full Sunday.</span></li>
+    <li><span class="when">Two weeks later</span><span class="what">Results day</span><span class="detail">Your rank, your scorecard and your Builder Card, win or lose.</span></li>
+  </ol>
+  <p class="after-weekend">You submit a demo video of three minutes or less, your code, your stack and a one-page decision log. Judges score it out of 100, with the problem owner on the panel: solving the brief 30, technical craft 30, product judgement 20, demo clarity 20.</p>
+</section>
+
+<section class="wrap section" aria-labelledby="vote-h">
+  <div class="section-head">
+    <h2 id="vote-h" class="heading">Pick the {{ event.name }} brief</h2>
+    <p>Five real problems are on the shortlist. Voting opens January 25, and the winner is revealed when the brief drops.</p>
+  </div>
+  <div class="table-scroll">
+    <table class="briefs">
+      <thead><tr><th scope="col">Brief</th><th scope="col">From</th><th scope="col">What they need</th></tr></thead>
+      <tbody>
+        <tr><td>Match the shelf</td><td>A community food bank</td><td>Turn a week of English and French intake notes into a pick list and a forecast of next week's demand.</td></tr>
+        <tr><td>Ask the bylaws</td><td>A small-town clerk's office</td><td>Answer residents' questions from bylaws and council minutes, citing the source, and say so when the answer isn't there.</td></tr>
+        <tr><td>Why did it come back?</td><td>An independent retailer</td><td>Read 5,000 return notes and photos and find the reasons, the fixes and the abuse.</td></tr>
+        <tr><td>Plain words</td><td>A newcomer literacy nonprofit</td><td>Rewrite government letters in plain English without changing what they mean.</td></tr>
+        <tr><td>Dispatch from voicemail</td><td>A regional trucking company</td><td>Turn drivers' delay voicemails into updated arrival times and customer messages.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="vote-cta">
+    <a href="/register" class="btn btn-outline">Enter the {{ event.name }}</a>
+    <p class="small">Registered builders get the ballot by email.</p>
+  </div>
+</section>
+
+<section id="standings" class="band-light section-gap" aria-labelledby="stand-h">
+  <div class="wrap band split">
+    <div class="narrow">
+      <h2 id="stand-h" class="heading">One national ranking</h2>
+      <p class="lede">Four Opens a year. Your best three count toward the season, so missing a weekend never ends it.</p>
+      <p class="muted">Every builder is ranked nationally, in their province or territory, at their school, and on a separate board for first-timers. Colleges are ranked alongside universities.</p>
+    </div>
+    <div class="wide table-scroll on-light">
+      <table class="standings">
+        <caption>What the national board looks like after an Open. Example names.</caption>
+        <thead><tr><th scope="col">Rank</th><th scope="col">Builder</th><th scope="col" class="col-school">School</th><th scope="col">Prov.</th><th scope="col">Rating</th></tr></thead>
+        <tbody>
+          <tr class="leader"><td>1</td><td>Jordan Tremblay</td><td class="col-school">Université Laval</td><td>QC</td><td>1,710</td></tr>
+          <tr><td>2</td><td>Harleen Sidhu</td><td class="col-school">BCIT</td><td>BC</td><td>1,694</td></tr>
+          <tr><td>3</td><td>Ethan Park</td><td class="col-school">University of Waterloo</td><td>ON</td><td>1,688</td></tr>
+          <tr><td>4</td><td>Sofia Rossi</td><td class="col-school">University of Manitoba</td><td>MB</td><td>1,671</td></tr>
+          <tr><td>5</td><td>Noah Whitehorse</td><td class="col-school">SAIT</td><td>AB</td><td>1,659</td></tr>
+          <tr><td>6</td><td>Leila Haddad</td><td class="col-school">Seneca Polytechnic</td><td>ON</td><td>1,648</td></tr>
+          <tr><td>7</td><td>Amara Okafor</td><td class="col-school">Dalhousie University</td><td>NS</td><td>1,642</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="rewards" class="wrap section" aria-labelledby="rew-h">
+  <div class="split">
+    <div class="narrow">
+      <h2 id="rew-h" class="display display-lg">Win or lose, you leave with proof.</h2>
+      <p class="lede">Every result is verified and yours to show. The top finishers also take home cash, gear and a month of mentorship.</p>
+    </div>
+    <ul class="rows wide">
+      <li><span class="term">Results card</span><span class="desc">Your rank and percentile as a verified credential you can add to LinkedIn.</span></li>
+      <li><span class="term">Scorecard for everyone</span><span class="desc">Rubric scores and a national percentile, win or lose.</span></li>
+      <li><span class="term">Cash prize pool</span><span class="desc">30% of entry fees plus sponsor top-ups, shown live as it grows, never less than ${{ event.prize_floor }} an Open.</span></li>
+      <li><span class="term">Mentor for a month</span><span class="desc">Four one-on-one sessions with a senior engineer or founder for each winner.</span></li>
+      <li><span class="term">Engraved keycaps</span><span class="desc">One for every top-10 finish. The Season Champion gets a full custom keyboard.</span></li>
+      <li><span class="term">Ship It bonus</span><span class="desc">A second prize 30 days later for the build that real people are using.</span></li>
+      <li><span class="term">Company introductions</span><span class="desc">As companies join Deadlock, the top finishers are the first people we introduce them to.</span></li>
+    </ul>
+  </div>
+  <div class="ten">
+    <h3>The Deadlock 10</h3>
+    <p>Every December we profile the ten best student builders in the country, in writing and on video, one a day. It's chosen from the season standings, with one place kept for a comeback story.</p>
+  </div>
+  <div class="ai-note">
+    <h2>Use any AI tool. Keep your receipts.</h2>
+    <p>Every brief is an AI problem, and AI tools are welcome. Your commits start after the brief drops, your decision log says how you used AI, and top builds walk a judge through their code before results are final. We judge your decisions, not your keystrokes.</p>
+  </div>
+</section>
+
+<section id="companies" class="band-light section-gap" aria-labelledby="co-h">
+  <div class="wrap band split">
+    <div class="narrow">
+      <h2 id="co-h" class="display display-lg">Hire from results, not resumes.</h2>
+      <p class="lede">Every ranked builder solved a real brief, under a deadline, on their own, and can walk you through the code.</p>
+      <p><a href="mailto:{{ settings.contact_email }}?subject=Partnering%20with%20Deadlock" class="btn btn-dark">Talk to us about partnering</a></p>
+    </div>
+    <dl class="rows wide">
+      <div><dt class="term">Bring a problem</dt><dd class="desc">Free for businesses, nonprofits and towns. Hundreds of builders work on it, and you keep every solution.</dd></div>
+      <div><dt class="term">Sponsor an Open</dt><dd class="desc">Own that weekend's brief, name a prize and sit on the panel.</dd></div>
+      <div><dt class="term">Become a hiring partner</dt><dd class="desc">Interview each Open's top 10 and browse opt-in profiles with full scorecards.</dd></div>
+      <div><dt class="term">Present the season</dt><dd class="desc">Put your name on all four Opens and The Deadlock 10.</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="season" class="wrap section" aria-labelledby="season-h">
+  <div class="section-head">
+    <h2 id="season-h" class="heading">Season 1, 2027</h2>
+    <p>{{ event.price_label }} an Open. Any student enrolled at a Canadian university or college can enter, individually.</p>
+  </div>
+  <div class="fixtures">
+    {% for f in season %}
+      {% if loop.first %}
+      <div class="fixture next">
+        <span class="f-name">{{ f.name }}</span>
+        <span class="f-date">{{ f.dates }}</span>
+        <span class="f-note"><span class="when-not-open">Entries open {{ event.registration_opens.strftime("%B %-d") }}</span><span class="when-open">Entries close {{ event.registration_closes.strftime("%B %-d") }}</span><span class="when-closed">Entries closed</span></span>
+        <a href="/register" class="btn btn-dark">Enter for {{ event.price_label }}</a>
+      </div>
+      {% else %}
+      <div class="fixture"><span class="f-name">{{ f.name }}</span><span class="f-date">{{ f.dates }}</span><span class="f-note">{{ f.note }}</span></div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap section" aria-labelledby="faq-h">
+  <h2 id="faq-h" class="heading section-head">Questions</h2>
+  <div class="faq">
+    <details><summary>Do I need to be good to enter?</summary><p>No. First-timers have their own leaderboard and their own prize, and everyone gets a scorecard showing where to improve.</p></details>
+    <details><summary>Who can enter?</summary><p>Any student enrolled at a Canadian university or college, including international students. We check your school email and may ask for proof of enrolment.</p></details>
+    <details><summary>Can I enter with friends?</summary><p>You can all enter, but you build alone. Every result belongs to one person, which is what makes it worth something to an employer.</p></details>
+    <details><summary>Where does my {{ event.price_label }} go?</summary><p>30% goes straight into that Open's prize pool and 10% into the season prize. The rest runs judging, the platform and the rewards.</p></details>
+    <details><summary>Can I get a refund?</summary><p>Yes, a full refund until {{ event.refund_deadline.strftime("%B %-d") }}. Email {{ settings.contact_email }} from the address you registered with.</p></details>
+    <details><summary>What if I miss an Open?</summary><p>Your best three of four Opens count toward the season standings, so one missed weekend doesn't end your season.</p></details>
+  </div>
+</section>
+{% endblock %}

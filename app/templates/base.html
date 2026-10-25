@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" data-opens="{{ event.registration_opens.isoformat() }}" data-closes="{{ event.registration_closes.isoformat() }}"{% if settings.registration_override in ("open", "closed") %} data-override="{{ settings.registration_override }}"{% endif %}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Deadlock - Canada's national season for student builders{% endblock %}</title>
+<meta name="description" content="{% block description %}Solo, online build weekends for Canadian university and college students. Solve a real problem from a Canadian organization, get a national rank, get noticed.{% endblock %}">
+<meta property="og:title" content="{{ self.title() }}">
+<meta property="og:description" content="{{ self.description() }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ settings.site_url }}{{ page_path }}">
+<meta name="theme-color" content="#141414">
+<link rel="icon" href="{{ static('img/favicon.svg') }}" type="image/svg+xml">
+<link rel="preload" href="{{ static('fonts/archivo-latin-wdth-normal.woff2', versioned=False) }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ static('css/site.css') }}">
+<script src="{{ static('js/state.js') }}"></script>
+{% block head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}">
+<a class="skip-link" href="#main">Skip to content</a>
+{% block banner %}{% endblock %}
+<header class="site-header">
+  <nav class="wrap" aria-label="Main">
+    <a href="/" class="brand" aria-label="Deadlock home">
+      <svg width="42" height="28" viewBox="0 0 48 32" aria-hidden="true"><rect x="3" y="7" width="26" height="18" rx="9" fill="none" stroke="#F2F2EE" stroke-width="4"/><rect x="19" y="7" width="26" height="18" rx="9" fill="none" stroke="#D4FF3A" stroke-width="4"/></svg>
+      <span class="brand-name">Deadlock</span>
+    </a>
+    <div class="nav-links">
+      <a href="/#how">How an Open works</a>
+      <a href="/#standings">Standings</a>
+      <a href="/#rewards">Rewards</a>
+      <a href="/#companies">For companies</a>
+    </div>
+    <a href="/register" class="btn btn-accent header-cta"><span>Enter<span class="wide-only"> the {{ event.name }}</span></span></a>
+  </nav>
+</header>
+
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-brand">
+      <svg width="36" height="24" viewBox="0 0 48 32" aria-hidden="true"><rect x="3" y="7" width="26" height="18" rx="9" fill="none" stroke="#F2F2EE" stroke-width="4"/><rect x="19" y="7" width="26" height="18" rx="9" fill="none" stroke="#D4FF3A" stroke-width="4"/></svg>
+      <span class="brand-name">Deadlock</span>
+      <span class="small">Break the deadlock.</span>
+    </div>
+    <div class="footer-links">
+      <a href="/rules">Official rules</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/conduct">Code of conduct</a>
+      <a href="mailto:{{ settings.contact_email }}">Contact</a>
+    </div>
+  </div>
+</footer>
+{% block scripts %}{% endblock %}
+</body>
+</html>

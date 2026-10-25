@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}Enter the {{ event.full_name }} - Deadlock{% endblock %}
+{% block description %}Register for the Deadlock {{ event.full_name }}, {{ event.dates_label }}. {{ event.price_label }} entry for Canadian university and college students.{% endblock %}
+
+{% block body_class %}page-register{% endblock %}
+
+{% block main %}
+<div class="register-page on-light">
+  <div class="wrap register-grid">
+    <aside class="register-summary" aria-labelledby="reg-h">
+      <h1 id="reg-h" class="display display-lg">Enter the {{ event.name }}</h1>
+      <p class="lede">{{ event.dates_label }}. Online, solo, one real brief.</p>
+      <div class="price"><strong>{{ event.price_label }}</strong><span>CAD, one entry</span></div>
+      <ul class="included">
+        <li>One real brief from a Canadian business, nonprofit or town</li>
+        <li>A national, provincial and school rank</li>
+        <li>A scorecard and a verified results card, win or lose</li>
+        <li>A shot at the cash pool, never less than ${{ event.prize_floor }}</li>
+      </ul>
+      <p class="small">Full refund until {{ event.refund_deadline.strftime("%B %-d") }}. Payments are processed by Stripe; we never see your card number.</p>
+    </aside>
+
+    <div class="register-main">
+      <div class="when-not-open">
+        <div class="notice notice-info" role="status">
+          <strong>Entries open {{ event.registration_opens.strftime("%B %-d, %Y") }}.</strong>
+          Come back then to enter the {{ event.name }}. Entries close {{ event.registration_closes.strftime("%B %-d") }}.
+        </div>
+      </div>
+
+      <div class="when-closed">
+        <div class="notice notice-info" role="status">
+          <strong>Entries for the {{ event.name }} are closed.</strong>
+          The next Open is the Summer Open, June 18 to 20. Entries open in May.
+        </div>
+      </div>
+
+      <div class="when-open">
+      {% if not pay_url %}
+        <div class="notice notice-info" role="status">
+          <strong>Entries aren't available right now.</strong>
+          Try again soon, or email <a href="mailto:{{ settings.contact_email }}">{{ settings.contact_email }}</a>.
+        </div>
+      {% else %}
+        <section class="reg-block" aria-labelledby="ask-h">
+          <h2 id="ask-h" class="reg-h2">At checkout, Stripe asks for</h2>
+          <dl class="ask-list">
+            <div><dt>Your name</dt><dd>As you want it on the leaderboard.</dd></div>
+            <div><dt>Your school email</dt><dd><strong>Not a personal address.</strong> We use it to check that you're enrolled and to send you the brief.</dd></div>
+            <div><dt>Your school</dt><dd>Universities and colleges both count.</dd></div>
+            <div><dt>Your school's province or territory</dt><dd>This sets your regional leaderboard.</dd></div>
+            <div><dt>Your year of study</dt><dd>First year to graduate school.</dd></div>
+          </dl>
+        </section>
+
+        <section class="reg-block" aria-labelledby="confirm-h">
+          <h2 id="confirm-h" class="reg-h2">You'll confirm that</h2>
+          <ul class="included">
+            <li>You're enrolled at a Canadian university or college</li>
+            <li>You'll build your entry on your own</li>
+            <li>You agree to the <a href="/rules">Official Rules</a> and the <a href="/conduct">Code of Conduct</a></li>
+          </ul>
+        </section>
+
+        <div class="submit-row">
+          <a href="{{ pay_url }}" class="btn btn-dark btn-lg" data-pay-link>Continue to payment</a>
+          <p class="small">You'll pay {{ event.price_label }} CAD on Stripe's secure checkout. Have a free-entry code? Add it there.</p>
+        </div>
+      {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ static('js/referral.js') }}" defer></script>
+{% endblock %}

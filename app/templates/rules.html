@@ -1,0 +1,72 @@
+{% extends "legal_base.html" %}
+
+{% block title %}Official Rules - Deadlock {{ event.full_name }}{% endblock %}
+
+{% block prose %}
+<h1 class="heading">Official Rules</h1>
+<p>Deadlock {{ event.full_name }}. Last updated [date].</p>
+
+<h2>1. Organizer</h2>
+<p>The {{ event.name }} ("the Open") is run by [legal entity name], [address] ("Deadlock", "we"). Contact: {{ settings.contact_email }}.</p>
+
+<h2>2. Who can enter</h2>
+<ul>
+  <li>You must be enrolled at a Canadian university or college when you register and during the Open, and be at least the age of majority in your province or territory, or have a parent's or guardian's consent.</li>
+  <li>Entries are individual. You may not work in a team or get help from another person.</li>
+  <li>We verify enrolment through your school email and may ask for proof of enrolment. We may disqualify an entry we can't verify.</li>
+  <li>Deadlock staff, judges, problem owners and their immediate families are not eligible. [Counsel to confirm the full exclusion list.]</li>
+</ul>
+
+<h2>3. How to enter</h2>
+<p>Register at {{ settings.site_url }}/register between {{ event.registration_opens.strftime("%B %-d, %Y") }} and {{ event.registration_closes.strftime("%B %-d, %Y at %-I:%M %p") }} ET, and pay the entry fee of {{ event.price_label }} CAD through Stripe, using your school email. One entry per person; if you pay twice, we refund the extra entry.</p>
+
+<h2>4. Schedule</h2>
+<ul>
+  <li>The brief is released {{ event.starts_at.strftime("%A, %B %-d, %Y at %-I:%M %p") }} ET.</li>
+  <li>A requirement change ("the Pivot") is released on Saturday at 2:00 PM ET.</li>
+  <li>Submissions close {{ event.ends_at.strftime("%A, %B %-d, %Y at %-I:%M %p") }} ET. Late submissions are not judged.</li>
+</ul>
+
+<h2>5. What you submit</h2>
+<p>A demo video of three minutes or less, a link to your code repository, a list of the languages, services and AI tools you used, and a one-page decision log. Your repository's first commit must be after the brief is released.</p>
+
+<h2>6. Use of AI tools</h2>
+<p>You may use any AI tool. Your decision log must describe how you used AI. You must be able to explain your code: top-ranked entrants complete a short private walkthrough with a judge before results are final.</p>
+
+<h2>7. Judging</h2>
+<p>This is a contest of skill. Winners are decided by judges using the criteria below. There is no random draw and no element of chance.</p>
+<ul>
+  <li>Solves the brief: 30 points, half from the problem owner's held-out test cases and half from judges</li>
+  <li>Technical craft: 30 points</li>
+  <li>Product judgement, including the Pivot: 20 points</li>
+  <li>Demo clarity: 20 points</li>
+</ul>
+<p>Ties are broken by the "Solves the brief" score, then by technical craft. Judges' decisions are final.</p>
+
+<h2>8. Prizes</h2>
+<ul>
+  <li>The cash prize pool is 30% of net entry fees for this Open plus any sponsor top-ups, and is guaranteed to be at least ${{ event.prize_floor }} CAD.</li>
+  <li>The pool is split among the top three entrants: 50%, 30% and 20%. [Confirm split.]</li>
+  <li>Other rewards (titles, keycaps, mentorship, Builder Cards) are non-cash and have no cash value.</li>
+  <li>Winners must answer a skill-testing question and confirm eligibility before receiving a prize. [Counsel to confirm.]</li>
+  <li>Prizes are paid within 30 days of results day.</li>
+</ul>
+
+<h2>9. Ownership</h2>
+<p>You own the code and work you submit. You give Deadlock permission to show your submission, name, school and results on our website and social channels. You may choose to share your work with the problem owner under an open licence; this is optional.</p>
+
+<h2>10. Disqualification</h2>
+<p>We may disqualify an entry that breaks these rules, including work by someone other than the entrant, code written before the brief was released, plagiarism, or breaking the Code of Conduct.</p>
+
+<h2>11. Refunds</h2>
+<p>You can get a full refund until {{ event.refund_deadline.strftime("%B %-d, %Y") }} by emailing {{ settings.contact_email }} from the address you registered with. After that date, entry fees are refunded only if we cancel the Open.</p>
+
+<h2>12. Privacy</h2>
+<p>We handle your information as described in our <a href="/privacy">Privacy Policy</a>.</p>
+
+<h2>13. Quebec residents</h2>
+<p>[Counsel to add any wording required for entrants in Quebec.]</p>
+
+<h2>14. General</h2>
+<p>These rules are governed by the laws of [province] and the federal laws of Canada that apply there. We may change these rules before registration opens; after that, only to fix errors or if something outside our control requires it, with notice to entrants.</p>
+{% endblock %}

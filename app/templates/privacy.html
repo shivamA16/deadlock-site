@@ -1,0 +1,40 @@
+{% extends "legal_base.html" %}
+
+{% block title %}Privacy Policy - Deadlock{% endblock %}
+
+{% block prose %}
+<h1 class="heading">Privacy Policy</h1>
+<p>Last updated [date].</p>
+
+<h2>What we collect</h2>
+<ul>
+  <li>When you register and pay: Stripe collects your name, school email, school, your school's province or territory and your year of study, plus a referral code if you used a referral link. Stripe processes your payment; we see that you paid and the amount, but never your card number.</li>
+  <li>When you submit: your demo video link, code repository link, stack and decision log.</li>
+</ul>
+
+<h2>Why we collect it</h2>
+<ul>
+  <li>To run the Open: verify your eligibility, send you the brief, judge your entry and publish results.</li>
+  <li>To show results: your name, school, province and rank appear on public leaderboards and your Builder Card.</li>
+  <li>To email you about future Opens, only if you agree to it.</li>
+  <li>To share your profile and results with partner companies, only if you agree to it. We'll ask before sharing anything.</li>
+</ul>
+
+<h2>Who we share it with</h2>
+<ul>
+  <li>Stripe, which runs registration and payment.</li>
+  <li>Our email provider, to send you messages.</li>
+  <li>Our hosting provider, Google Cloud, which stores the site.</li>
+  <li>Partner companies, only if you opted in.</li>
+</ul>
+<p>We don't sell your information.</p>
+
+<h2>How long we keep it</h2>
+<p>We keep registration and results records for [period] so that your Builder Rating and results stay verifiable. You can ask us to delete your information at any time; your published rank may remain as an anonymized entry.</p>
+
+<h2>Your choices</h2>
+<p>You can ask to see, correct or delete your information, or withdraw consent for emails or partner sharing, by writing to {{ settings.contact_email }}. Every marketing email has an unsubscribe link.</p>
+
+<h2>Contact</h2>
+<p>[Legal entity name], [address]. Privacy questions: {{ settings.contact_email }}.</p>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found - Deadlock{% endblock %}
+
+{% block main %}
+<section class="wrap" aria-labelledby="nf-h"><div class="success">
+  <h1 id="nf-h" class="display display-xl">Dead end.</h1>
+  <p class="lede">There's no page at this address. It may have moved, or the link has a typo.</p>
+  <div class="success-actions">
+    <a href="/" class="btn btn-accent">Go to the homepage</a>
+    <a href="/register" class="btn btn-outline">Enter the {{ event.name }}</a>
+  </div>
+</div></section>
+{% endblock %}

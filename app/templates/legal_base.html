@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block head %}{% if settings.legal_draft %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
+
+{% block banner %}
+{% if settings.legal_draft %}
+<div class="draft-banner" role="note">Draft for legal review. This page must be reviewed by a lawyer before registration opens.</div>
+{% endif %}
+{% endblock %}
+
+{% block main %}
+<article class="wrap legal">
+  <div class="prose">
+    {% block prose %}{% endblock %}
+  </div>
+</article>
+{% endblock %}
