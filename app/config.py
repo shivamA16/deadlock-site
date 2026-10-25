@@ -45,7 +45,7 @@ WINTER_OPEN_2027 = Event(
     registration_opens=datetime(2027, 1, 4, 9, 0, tzinfo=ET),
     registration_closes=datetime(2027, 2, 17, 23, 59, 59, tzinfo=ET),
     refund_deadline=datetime(2027, 2, 12, 23, 59, 59, tzinfo=ET),
-    price_cents=1000,
+    price_cents=1500,
     currency="cad",
     prize_floor=500,
 )
