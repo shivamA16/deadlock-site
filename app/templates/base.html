@@ -31,8 +31,8 @@
       <a href="/#rewards">Rewards</a>
       <a href="/#companies">For companies</a>
     </div>
-    <a href="/register" class="btn btn-accent header-cta"><span>Enter<span class="wide-only"> the {{ event.name }}</span></span></a>
-  </nav>
+    <a href="/register" class="btn btn-accent header-cta unless-not-open"><span>Enter<span class="wide-only"> the {{ event.name }}</span></span></a>
+    <a href="{{ event.interest_url }}" class="btn btn-accent header-cta when-not-open"><span>Register<span class="wide-only"> interest</span></span></a>  </nav>
 </header>
 
 <main id="main">
