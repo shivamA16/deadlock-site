@@ -6,7 +6,8 @@
     <h1 id="hero-h" class="display display-xl">Solve real problems.<br>Get ranked.<br>Get noticed.</h1>
     <p class="lede">Deadlock is a national season of solo build weekends for Canadian students. Each Open gives you one real problem from a Canadian business, nonprofit or town, one weekend to build it, and a rank that hiring teams trust.</p>
     <div class="hero-actions">
-      <a href="/register" class="btn btn-accent btn-lg">Enter for {{ event.price_label }}</a>
+      <a href="/register" class="btn btn-accent btn-lg unless-not-open">Enter for {{ event.price_label }}</a>
+      <a href="{{ event.interest_url }}" class="btn btn-accent btn-lg when-not-open">Register your interest</a>
       <a href="#how" class="text-link">See how an Open works</a>
     </div>
     <p class="small">{{ event.name }}, {{ event.dates_label }}. Open to every university and college student in Canada.</p>
@@ -75,7 +76,8 @@
     </table>
   </div>
   <div class="vote-cta">
-    <a href="/register" class="btn btn-outline">Enter the {{ event.name }}</a>
+    <a href="/register" class="btn btn-outline unless-not-open">Enter the {{ event.name }}</a>
+    <a href="{{ event.interest_url }}" class="btn btn-outline when-not-open">Register your interest</a>
     <p class="small">Registered builders get the ballot by email.</p>
   </div>
 </section>
@@ -159,7 +161,8 @@
         <span class="f-name">{{ f.name }}</span>
         <span class="f-date">{{ f.dates }}</span>
         <span class="f-note"><span class="when-not-open">Entries open {{ event.registration_opens.strftime("%B %-d") }}</span><span class="when-open">Entries close {{ event.registration_closes.strftime("%B %-d") }}</span><span class="when-closed">Entries closed</span></span>
-        <a href="/register" class="btn btn-dark">Enter for {{ event.price_label }}</a>
+        <a href="/register" class="btn btn-dark unless-not-open">Enter for {{ event.price_label }}</a>
+        <a href="{{ event.interest_url }}" class="btn btn-dark when-not-open">Register interest</a>
       </div>
       {% else %}
       <div class="fixture"><span class="f-name">{{ f.name }}</span><span class="f-date">{{ f.dates }}</span><span class="f-note">{{ f.note }}</span></div>
