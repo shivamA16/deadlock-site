@@ -43,7 +43,7 @@ WINTER_OPEN_2027 = Event(
     dates_label="February 19 to 21, 2027",
     starts_at=datetime(2027, 2, 19, 20, 0, tzinfo=ET),
     ends_at=datetime(2027, 2, 21, 23, 0, tzinfo=ET),
-    registration_opens=datetime(2026, 10, 31, 0, 0, tzinfo=ET),
+    registration_opens=datetime(2027, 1, 4, 0, 0, tzinfo=ET),
     registration_closes=datetime(2027, 2, 17, 23, 59, 59, tzinfo=ET),
     refund_deadline=datetime(2027, 2, 12, 23, 59, 59, tzinfo=ET),
     price_cents=1500,
