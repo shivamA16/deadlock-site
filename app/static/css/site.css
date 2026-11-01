@@ -1138,3 +1138,7 @@ html:not([data-reg]) .when-not-open,
 html:not([data-reg]) .when-closed {
   display: none !important;
 }
+/* Before registration opens, hide the Enter buttons (their "Register interest" twins show instead). */
+html[data-reg="not_open"] .unless-not-open {
+  display: none !important;
+}
