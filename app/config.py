@@ -24,6 +24,7 @@ class Event:
     price_cents: int
     currency: str
     prize_floor: int  # guaranteed cash pool in dollars
+    interest_url: str 
 
     @property
     def price_label(self) -> str:
@@ -48,6 +49,7 @@ WINTER_OPEN_2027 = Event(
     price_cents=1500,
     currency="cad",
     prize_floor=500,
+    interest_url="https://tally.so/r/rD5VkM",
 )
 
 # Change this when the next Open's registration starts, and create a new payment link for it.
