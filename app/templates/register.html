@@ -25,8 +25,9 @@
       <div class="when-not-open">
         <div class="notice notice-info" role="status">
           <strong>Entries open {{ event.registration_opens.strftime("%B %-d, %Y") }}.</strong>
-          Come back then to enter the {{ event.name }}. Entries close {{ event.registration_closes.strftime("%B %-d") }}.
+                    Register your interest and we'll email you when they open. Entries close {{ event.registration_closes.strftime("%B %-d") }}.
         </div>
+        <a href="{{ event.interest_url }}" class="btn btn-dark btn-lg">Register your interest</a>
       </div>
 
       <div class="when-closed">
