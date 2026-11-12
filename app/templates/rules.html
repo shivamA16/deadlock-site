@@ -4,21 +4,22 @@
 
 {% block prose %}
 <h1 class="heading">Official Rules</h1>
-<p>Deadlock {{ event.full_name }}. Last updated [date].</p>
+<p>Deadlock {{ event.full_name }}. Last updated {{ legal_updated }}.</p>
 
 <h2>1. Organizer</h2>
-<p>The {{ event.name }} ("the Open") is run by [legal entity name], [address] ("Deadlock", "we"). Contact: {{ settings.contact_email }}.</p>
+<p>The {{ event.name }} ("the Open") is run by {{ settings.legal_entity_label }}, {{ settings.mailing_address_label }} ("Deadlock", "we"). Contact: {{ settings.contact_email }}.</p>
 
 <h2>2. Who can enter</h2>
 <ul>
-  <li>You must be enrolled at a Canadian university or college when you register and during the Open, and be at least the age of majority in your province or territory, or have a parent's or guardian's consent.</li>
+  <li>You must be enrolled at a Canadian university or college when you register and during the Open, and be at least 18 years old. We don't accept entries from anyone under 18.</li>
   <li>Entries are individual. You may not work in a team or get help from another person.</li>
   <li>We verify enrolment through your school email and may ask for proof of enrolment. We may disqualify an entry we can't verify.</li>
   <li>Deadlock staff, judges, problem owners and their immediate families are not eligible. [Counsel to confirm the full exclusion list.]</li>
 </ul>
 
 <h2>3. How to enter</h2>
-<p>Register at {{ settings.site_url }}/register between {{ event.registration_opens.strftime("%B %-d, %Y") }} and {{ event.registration_closes.strftime("%B %-d, %Y at %-I:%M %p") }} ET, and pay the entry fee of {{ event.price_label }} CAD through Stripe, using your school email. One entry per person; if you pay twice, we refund the extra entry.</p>
+<p>Registering your interest at {{ settings.site_url }}/register is free and doesn't enter you in anything. We'll email everyone who registered their interest when entries open. To enter, you'll pay the entry fee of {{ event.price_label }} CAD through Stripe, using your school email, before entries close. One entry per person; if you pay twice, we refund the extra entry.</p>
+<p>The entry fee is a one-time payment for one Open. It is not a subscription, nothing renews automatically, and we will never charge you again unless you choose to enter another Open.</p>
 
 <h2>4. Schedule</h2>
 <ul>
@@ -44,15 +45,17 @@
 
 <h2>8. Prizes</h2>
 <ul>
-  <li>The cash prize pool is 30% of net entry fees for this Open plus any sponsor top-ups, and is guaranteed to be at least ${{ event.prize_floor }} CAD.</li>
+  <li>The cash prize pool is 30% of net entry fees for this Open plus any sponsor top-ups. Because it depends on how many people enter, its size is not fixed in advance; we'll publish the amount before results.</li>
   <li>The pool is split among the top three entrants: 50%, 30% and 20%. [Confirm split.]</li>
-  <li>Other rewards (titles, keycaps, mentorship, Builder Cards) are non-cash and have no cash value.</li>
+  <li>Other rewards (merch such as engraved keycaps and custom keyboards, mentorship sessions, Builder Cards) are non-cash and have no cash value. Mentors are volunteers and sessions depend on their availability.</li>
   <li>Winners must answer a skill-testing question and confirm eligibility before receiving a prize. [Counsel to confirm.]</li>
   <li>Prizes are paid within 30 days of results day.</li>
 </ul>
 
 <h2>9. Ownership</h2>
-<p>You own the code and work you submit. You give Deadlock permission to show your submission, name, school and results on our website and social channels. You may choose to share your work with the problem owner under an open licence; this is optional.</p>
+<p>You own the code and work you submit. You give Deadlock permission to show your submission, name, province and results on our website and social channels. You may choose to share your work with the problem owner under an open licence; this is optional.</p>
+<p>The Deadlock 10: we publish a profile, video or LinkedIn post about a builder only with that builder's separate written permission. You can say no, or withdraw permission later, without any effect on your rank or prizes.</p>
+<p>You must have the right to submit everything in your entry, including any code, data, images or video. You must not submit anything that infringes someone else's rights. Submissions are links to material you host yourself; we don't host them.</p>
 
 <h2>10. Disqualification</h2>
 <p>We may disqualify an entry that breaks these rules, including work by someone other than the entrant, code written before the brief was released, plagiarism, or breaking the Code of Conduct.</p>
@@ -60,12 +63,15 @@
 <h2>11. Refunds</h2>
 <p>You can get a full refund until {{ event.refund_deadline.strftime("%B %-d, %Y") }} by emailing {{ settings.contact_email }} from the address you registered with. After that date, entry fees are refunded only if we cancel the Open.</p>
 
-<h2>12. Privacy</h2>
+<h2>12. Copyright and other complaints</h2>
+<p>If you believe something on this site or in our channels infringes your copyright or other rights, email {{ settings.contact_email }} with the details, including where you saw it and what right you hold. We'll review it promptly and take down or correct anything that is infringing.</p>
+
+<h2>13. Privacy</h2>
 <p>We handle your information as described in our <a href="/privacy">Privacy Policy</a>.</p>
 
-<h2>13. Quebec residents</h2>
+<h2>14. Quebec residents</h2>
 <p>[Counsel to add any wording required for entrants in Quebec.]</p>
 
-<h2>14. General</h2>
-<p>These rules are governed by the laws of [province] and the federal laws of Canada that apply there. We may change these rules before registration opens; after that, only to fix errors or if something outside our control requires it, with notice to entrants.</p>
+<h2>15. General</h2>
+<p>These rules are governed by the laws of {{ settings.governing_province_label }} and the federal laws of Canada that apply there. We may change these rules before registration opens; after that, only to fix errors or if something outside our control requires it, with notice to entrants.</p>
 {% endblock %}

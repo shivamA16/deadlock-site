@@ -4,37 +4,49 @@
 
 {% block prose %}
 <h1 class="heading">Privacy Policy</h1>
-<p>Last updated [date].</p>
+<p>Last updated {{ legal_updated }}.</p>
+
+<h2>Who we are</h2>
+<p>Deadlock is run by {{ settings.legal_entity_label }}, {{ settings.mailing_address_label }} ("Deadlock", "we"). Privacy questions and requests: {{ settings.contact_email }}.</p>
+
+<h2>Who this is for</h2>
+<p>Deadlock is for adults. You must be at least 18 and enrolled at a Canadian university or college to register your interest or enter. We don't knowingly collect information from anyone under 18. If you think someone under 18 has given us their information, email {{ settings.contact_email }} and we'll delete it.</p>
 
 <h2>What we collect</h2>
 <ul>
-  <li>When you register and pay: Stripe collects your name, school email, school, your school's province or territory and your year of study, plus a referral code if you used a referral link. Stripe processes your payment; we see that you paid and the amount, but never your card number.</li>
-  <li>When you submit: your demo video link, code repository link, stack and decision log.</li>
+  <li><strong>This website:</strong> collects nothing about you directly. It sets no cookies and uses no analytics, advertising trackers or session recording, and it loads its fonts and code from our own domain, not from third parties. Our host, Netlify, keeps standard server logs (such as IP address and pages requested) for security and reliability.</li>
+  <li><strong>When you register your interest:</strong> the details you type into our interest form, such as your name, email address and school. The form is run by Tally, which processes the submission and may collect technical information such as your IP address under its own privacy policy. We also keep a record that you confirmed you're 18 or older and agreed to receive emails from us.</li>
+  <li><strong>When you enter an Open and pay (once entries open):</strong> Stripe collects your name, school email, school, your school's province or territory and your year of study, plus a referral code if you used a referral link. Stripe processes your payment; we see that you paid and the amount, but never your card number.</li>
+  <li><strong>When you submit:</strong> your demo video link, code repository link, stack and decision log.</li>
 </ul>
 
-<h2>Why we collect it</h2>
+<h2>Why we collect it and who may see it</h2>
 <ul>
-  <li>To run the Open: verify your eligibility, send you the brief, judge your entry and publish results.</li>
-  <li>To show results: your name, school, province and rank appear on public leaderboards and your Builder Card.</li>
-  <li>To email you about future Opens, only if you agree to it.</li>
-  <li>To share your profile and results with partner companies, only if you agree to it. We'll ask before sharing anything.</li>
+  <li><strong>To email you about Deadlock:</strong> to tell you when entries open and about future Opens, only if you agreed. Every email says who it's from, includes our mailing address and has a one-click unsubscribe link.</li>
+  <li><strong>To run an Open:</strong> verify your eligibility, send you the brief, judge your entry and publish results.</li>
+  <li><strong>To show results:</strong> your name, province and rank appear on public leaderboards and your Builder Card.</li>
+  <li><strong>To feature you:</strong> The Deadlock 10 profiles, and the posts we publish about them on LinkedIn and our other channels, are published only with your permission, which we ask for separately and in writing. You can withdraw it and we'll stop publishing and take down what we control.</li>
+  <li><strong>To introduce you to companies:</strong> we share your profile and results with partner companies only if you opt in, and we'll ask before sharing anything.</li>
 </ul>
 
 <h2>Who we share it with</h2>
 <ul>
-  <li>Stripe, which runs registration and payment.</li>
+  <li>Tally (the interest form) and Stripe (payments, once entries open).</li>
   <li>Our email provider, to send you messages.</li>
-  <li>Our hosting provider, Google Cloud, which stores the site.</li>
+  <li>Netlify, which hosts this website.</li>
   <li>Partner companies, only if you opted in.</li>
 </ul>
-<p>We don't sell your information.</p>
+<p>We don't sell your information. These providers may process and store information outside Canada, including in the United States and the European Union, where it is subject to local laws.</p>
 
 <h2>How long we keep it</h2>
-<p>We keep registration and results records for [period] so that your Builder Rating and results stay verifiable. You can ask us to delete your information at any time; your published rank may remain as an anonymized entry.</p>
+<p>We keep interest-list records until you unsubscribe or ask us to delete them, and in any case no longer than {{ settings.retention_period_label }}. We keep registration and results records for the same period so that your Builder Rating and results stay verifiable. You can ask us to delete your information at any time; your published rank may remain as an anonymized entry.</p>
 
 <h2>Your choices</h2>
-<p>You can ask to see, correct or delete your information, or withdraw consent for emails or partner sharing, by writing to {{ settings.contact_email }}. Every marketing email has an unsubscribe link.</p>
+<p>You can ask to see, correct or delete your information, or withdraw consent for emails, featuring you or partner sharing, by writing to {{ settings.contact_email }}. We'll reply within 30 days. Every marketing email has an unsubscribe link and we act on unsubscribes within 10 business days, usually immediately.</p>
+
+<h2>Complaints</h2>
+<p>If we haven't resolved a concern, you can contact the Office of the Privacy Commissioner of Canada, or the privacy regulator in your province.</p>
 
 <h2>Contact</h2>
-<p>[Legal entity name], [address]. Privacy questions: {{ settings.contact_email }}.</p>
+<p>{{ settings.legal_entity_label }}, {{ settings.mailing_address_label }}. Privacy questions: {{ settings.contact_email }}.</p>
 {% endblock %}

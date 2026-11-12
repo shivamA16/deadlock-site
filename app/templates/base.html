@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-opens="{{ event.registration_opens.isoformat() }}" data-closes="{{ event.registration_closes.isoformat() }}"{% if settings.registration_override in ("open", "closed") %} data-override="{{ settings.registration_override }}"{% endif %}>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,6 @@
 <link rel="icon" href="{{ static('img/favicon.svg') }}" type="image/svg+xml">
 <link rel="preload" href="{{ static('fonts/archivo-latin-wdth-normal.woff2', versioned=False) }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ static('css/site.css') }}">
-<script src="{{ static('js/state.js') }}"></script>
 {% block head %}{% endblock %}
 </head>
 <body class="{% block body_class %}{% endblock %}">
@@ -31,8 +30,8 @@
       <a href="/#rewards">Rewards</a>
       <a href="/#companies">For companies</a>
     </div>
-    <a href="/register" class="btn btn-accent header-cta unless-not-open"><span>Enter<span class="wide-only"> the {{ event.name }}</span></span></a>
-    <a href="{{ event.interest_url }}" class="btn btn-accent header-cta when-not-open"><span>Register<span class="wide-only"> interest</span></span></a>  </nav>
+    <a href="/register" class="btn btn-accent header-cta"><span>Register<span class="wide-only"> your interest</span></span></a>
+  </nav>
 </header>
 
 <main id="main">
@@ -52,6 +51,7 @@
       <a href="/conduct">Code of conduct</a>
       <a href="mailto:{{ settings.contact_email }}">Contact</a>
     </div>
+    <p class="small footer-legal">{{ settings.legal_entity_label }}{% if settings.mailing_address %}, {{ settings.mailing_address }}{% endif %}. We don't use cookies, analytics or session recording on this site.</p>
   </div>
 </footer>
 {% block scripts %}{% endblock %}

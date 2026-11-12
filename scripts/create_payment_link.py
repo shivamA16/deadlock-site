@@ -53,7 +53,7 @@ def link_params(price_id: str, site_url: str) -> dict:
         "custom_text": {
             "terms_of_service_acceptance": {
                 "message": (
-                    "I'm enrolled at a Canadian university or college, I'll build my entry on my own, "
+                    "I'm 18 or older, I'm enrolled at a Canadian university or college, I'll build my entry on my own, "
                     f"and I agree to the [Official Rules]({site_url}/rules) "
                     f"and [Code of Conduct]({site_url}/conduct)."
                 )
@@ -61,6 +61,7 @@ def link_params(price_id: str, site_url: str) -> dict:
             "submit": {
                 "message": (
                     "Use your school email above: we use it to check that you're enrolled. "
+                    "This is a one-time payment for one Open. It is not a subscription and will not renew. "
                     "Deadlock is a contest of skill. Winners are chosen by judges, never by chance."
                 )
             },

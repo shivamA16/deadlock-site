@@ -4,13 +4,14 @@
     python build.py --serve   build, then preview at http://localhost:8080
 
 Netlify runs `python build.py` on every deploy (see netlify.toml). Settings come from
-environment variables set in Netlify: PAYMENT_LINK_URL, SITE_URL, CONTACT_EMAIL, DISCORD_URL,
-REGISTRATION_OVERRIDE and LEGAL_DRAFT.
+environment variables set in Netlify: SITE_URL, CONTACT_EMAIL, DISCORD_URL, LEGAL_DRAFT, LEGAL_ENTITY,
+MAILING_ADDRESS, GOVERNING_PROVINCE and RETENTION_PERIOD (PAYMENT_LINK_URL only when paid entries reopen).
 """
 
 from __future__ import annotations
 
 import hashlib
+import re
 import shutil
 import sys
 from datetime import timezone
@@ -19,7 +20,7 @@ from urllib.parse import urlencode
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
 
-from app.config import CURRENT_EVENT, SEASON, Settings, load_settings
+from app.config import CURRENT_EVENT, LEGAL_UPDATED, SEASON, Settings, load_settings
 
 ROOT = Path(__file__).resolve().parent
 TEMPLATES = ROOT / "app" / "templates"
@@ -35,6 +36,9 @@ PAGES = [
     ("conduct.html", "conduct.html", "/conduct"),
     ("404.html", "404.html", "/404"),
 ]
+
+
+LEGAL_PAGES = {"rules.html", "privacy.html", "conduct.html"}
 
 
 def calendar_link(settings: Settings) -> str:
@@ -71,9 +75,6 @@ def make_static_url():
 
 def build(out: Path, settings: Settings | None = None) -> list[Path]:
     settings = settings or load_settings()
-    if not settings.payment_link_url:
-        print("warning: PAYMENT_LINK_URL is not set; the register page will say entries aren't available")
-
     env = Environment(
         loader=FileSystemLoader(TEMPLATES),
         autoescape=select_autoescape(["html"]),
@@ -81,6 +82,7 @@ def build(out: Path, settings: Settings | None = None) -> list[Path]:
     )
     env.globals.update(
         event=CURRENT_EVENT,
+        legal_updated=LEGAL_UPDATED,
         season=SEASON,
         settings=settings,
         static=make_static_url(),
@@ -91,16 +93,31 @@ def build(out: Path, settings: Settings | None = None) -> list[Path]:
     shutil.copytree(STATIC, out / "static")
 
     written = []
+    legal_html: dict[str, str] = {}
     for template, filename, path in PAGES:
         html = env.get_template(template).render(
             page_path=path,
-            pay_url=settings.payment_link_url,
             calendar_link=calendar_link(settings),
         )
         target = out / filename
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(html, encoding="utf-8")
         written.append(target)
+        if template in LEGAL_PAGES:
+            legal_html[template] = html
+
+    # Once the lawyer has signed off (LEGAL_DRAFT=false), refuse to publish pages that still hold placeholders.
+    if not settings.legal_draft:
+        leftovers = {
+            name: sorted(set(re.findall(r"\[[A-Za-z][^\]]{2,}\]", html))) for name, html in legal_html.items()
+        }
+        leftovers = {name: found for name, found in leftovers.items() if found}
+        if leftovers:
+            detail = "; ".join(f"{name}: {', '.join(found)}" for name, found in leftovers.items())
+            raise SystemExit(
+                "LEGAL_DRAFT=false but the legal pages still have placeholders. Set LEGAL_ENTITY, MAILING_ADDRESS, "
+                "GOVERNING_PROVINCE and RETENTION_PERIOD, and resolve the bracketed notes. " + detail
+            )
     print(f"Built {len(written)} pages into {out}")
     return written
 

@@ -1,24 +1,23 @@
 {% extends "base.html" %}
 
-{% block title %}You're in - Deadlock {{ event.full_name }}{% endblock %}
+{% block title %}You're on the list - Deadlock {{ event.full_name }}{% endblock %}
 {% block head %}<meta name="robots" content="noindex">{% endblock %}
 
 {% block main %}
 <section class="wrap" aria-labelledby="done-h"><div class="success">
-  <h1 id="done-h" class="display display-xl">You're in.</h1>
-  <p class="lede">You're registered for the {{ event.full_name }}, {{ event.dates_label }}. Stripe has emailed your receipt to the address you paid with.</p>
+  <h1 id="done-h" class="display display-xl">You're on the list.</h1>
+  <p class="lede">Thanks for registering your interest in the {{ event.full_name }}, {{ event.dates_label }}. Registering is free and you're not committed to enter.</p>
 
   <ol class="next-steps">
-    <li><span>Check your inbox for your Stripe receipt. That's your proof of entry.</span></li>
-    <li><span>We'll email you to confirm you're enrolled, using your school email.</span></li>
+    <li><span>We'll email you when entries open. Every email has an unsubscribe link, and you can also write to {{ settings.contact_email }} to be removed.</span></li>
     {% if settings.discord_url %}
-    <li><span><a href="{{ settings.discord_url }}">Join the builders' Discord</a> for announcements and help during the weekend.</span></li>
+    <li><span><a href="{{ settings.discord_url }}">Join the builders' Discord</a> for announcements.</span></li>
     {% endif %}
-    <li><span>The brief drops {{ event.starts_at.strftime("%A, %B %-d at %-I%p") | replace("PM", "pm") | replace("AM", "am") }} ET. Submissions close Sunday at 11pm ET.</span></li>
+    <li><span>Save the dates below. The brief drops {{ event.starts_at.strftime("%A, %B %-d at %-I%p") | replace("PM", "pm") | replace("AM", "am") }} ET and submissions close Sunday at 11pm ET.</span></li>
   </ol>
 
   <div class="success-actions">
-    <a href="{{ calendar_link }}" class="btn btn-accent" target="_blank" rel="noopener">Add to Google Calendar</a>
+    <a href="{{ calendar_link }}" class="btn btn-accent" target="_blank" rel="noopener">Add the dates to Google Calendar</a>
     <a href="/" class="btn btn-outline">Back to the homepage</a>
   </div>
 </div></section>
