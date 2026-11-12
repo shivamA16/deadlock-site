@@ -23,8 +23,7 @@ class Event:
     refund_deadline: datetime
     price_cents: int
     currency: str
-    prize_floor: int  # guaranteed cash pool in dollars
-    interest_url: str 
+    interest_url: str  # the interest-list form (Tally) that /register sends people to
 
     @property
     def price_label(self) -> str:
@@ -48,7 +47,6 @@ WINTER_OPEN_2027 = Event(
     refund_deadline=datetime(2027, 2, 12, 23, 59, 59, tzinfo=ET),
     price_cents=1500,
     currency="cad",
-    prize_floor=500,
     interest_url="https://tally.so/r/rD5VkM",
 )
 
@@ -64,14 +62,37 @@ SEASON = [
 ]
 
 
+# Date the legal pages were last changed. Update it whenever rules.html, privacy.html or conduct.html change.
+LEGAL_UPDATED = "November 11, 2026"
+
+
 @dataclass(frozen=True)
 class Settings:
-    payment_link_url: str  # the Stripe payment link for the current Open, e.g. https://buy.stripe.com/...
+    payment_link_url: str  # Stripe payment link for the current Open. Not used while the site is interest-only.
     site_url: str
     contact_email: str
     discord_url: str
-    registration_override: str  # "", "open" or "closed"
     legal_draft: bool
+    legal_entity: str = ""  # registered name of the organizer
+    mailing_address: str = ""  # postal address (required in marketing emails under CASL and CAN-SPAM)
+    governing_province: str = ""
+    retention_period: str = ""
+
+    @property
+    def legal_entity_label(self) -> str:
+        return self.legal_entity or "[legal entity name]"
+
+    @property
+    def mailing_address_label(self) -> str:
+        return self.mailing_address or "[mailing address]"
+
+    @property
+    def governing_province_label(self) -> str:
+        return self.governing_province or "[province]"
+
+    @property
+    def retention_period_label(self) -> str:
+        return self.retention_period or "[retention period]"
 
 
 def load_settings() -> Settings:
@@ -81,7 +102,10 @@ def load_settings() -> Settings:
         site_url=(os.environ.get("SITE_URL") or os.environ.get("URL") or "http://localhost:8080").rstrip("/"),
         contact_email=os.environ.get("CONTACT_EMAIL", "hello@example.com"),
         discord_url=os.environ.get("DISCORD_URL", ""),
-        registration_override=os.environ.get("REGISTRATION_OVERRIDE", "").strip().lower(),
         legal_draft=os.environ.get("LEGAL_DRAFT", "true").strip().lower() != "false",
+        legal_entity=os.environ.get("LEGAL_ENTITY", "").strip(),
+        mailing_address=os.environ.get("MAILING_ADDRESS", "").strip(),
+        governing_province=os.environ.get("GOVERNING_PROVINCE", "").strip(),
+        retention_period=os.environ.get("RETENTION_PERIOD", "").strip(),
     )
 

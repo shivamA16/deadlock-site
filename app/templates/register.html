@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
-{% block title %}Enter the {{ event.full_name }} - Deadlock{% endblock %}
-{% block description %}Register for the Deadlock {{ event.full_name }}, {{ event.dates_label }}. {{ event.price_label }} entry for Canadian university and college students.{% endblock %}
+{% block title %}Register your interest in the {{ event.full_name }} - Deadlock{% endblock %}
+{% block description %}Register your interest in the Deadlock {{ event.full_name }}, {{ event.dates_label }}, for Canadian university and college students aged 18 or older.{% endblock %}
 
 {% block body_class %}page-register{% endblock %}
 
@@ -9,66 +9,32 @@
 <div class="register-page on-light">
   <div class="wrap register-grid">
     <aside class="register-summary" aria-labelledby="reg-h">
-      <h1 id="reg-h" class="display display-lg">Enter the {{ event.name }}</h1>
-      <p class="lede">{{ event.dates_label }}. Online, solo, one real brief.</p>
-      <div class="price"><strong>{{ event.price_label }}</strong><span>CAD, one entry</span></div>
+      <h1 id="reg-h" class="display display-lg">Register your interest</h1>
+      <p class="lede">The {{ event.full_name }}, {{ event.dates_label }}. Online, solo, one real brief.</p>
       <ul class="included">
         <li>One real brief from a Canadian business, nonprofit or town</li>
         <li>A national, provincial and school rank</li>
         <li>A scorecard and a verified results card, win or lose</li>
-        <li>A shot at the cash pool, never less than ${{ event.prize_floor }}</li>
+        <li>A shot at the cash prize pool</li>
       </ul>
-      <p class="small">Full refund until {{ event.refund_deadline.strftime("%B %-d") }}. Payments are processed by Stripe; we never see your card number.</p>
+      <p class="small">Registering your interest is free and doesn't commit you to enter. The planned entry fee is {{ event.price_label }} CAD, a one-time payment per Open. Nothing renews.</p>
     </aside>
 
     <div class="register-main">
-      <div class="when-not-open">
-        <div class="notice notice-info" role="status">
-          <strong>Entries open {{ event.registration_opens.strftime("%B %-d, %Y") }}.</strong>
-                    Register your interest and we'll email you when they open. Entries close {{ event.registration_closes.strftime("%B %-d") }}.
-        </div>
-        <a href="{{ event.interest_url }}" class="btn btn-dark btn-lg">Register your interest</a>
-      </div>
+      <section class="reg-block" aria-labelledby="confirm-h">
+        <h2 id="confirm-h" class="reg-h2">Before you continue</h2>
+        <p>Please confirm both of these. The next page is a short form hosted by Tally.</p>
+        <fieldset class="consent">
+          <legend class="sr-only">Confirm to continue</legend>
+          <label><input type="checkbox" data-consent> <span>I'm 18 or older and enrolled at a Canadian university or college.</span></label>
+          <label><input type="checkbox" data-consent> <span>Deadlock can email me about the {{ event.full_name }} and future Opens. I can unsubscribe at any time.</span></label>
+        </fieldset>
+        <p class="small">Emails will come from {{ settings.legal_entity_label }}, {{ settings.mailing_address_label }}, {{ settings.contact_email }}. We use your details only as set out in our <a href="/privacy">Privacy Policy</a>, and we never sell them. You can withdraw consent at any time by emailing {{ settings.contact_email }} or using the unsubscribe link in any email.</p>
+      </section>
 
-      <div class="when-closed">
-        <div class="notice notice-info" role="status">
-          <strong>Entries for the {{ event.name }} are closed.</strong>
-          The next Open is the Summer Open, June 18 to 20. Entries open in May.
-        </div>
-      </div>
-
-      <div class="when-open">
-      {% if not pay_url %}
-        <div class="notice notice-info" role="status">
-          <strong>Entries aren't available right now.</strong>
-          Try again soon, or email <a href="mailto:{{ settings.contact_email }}">{{ settings.contact_email }}</a>.
-        </div>
-      {% else %}
-        <section class="reg-block" aria-labelledby="ask-h">
-          <h2 id="ask-h" class="reg-h2">At checkout, Stripe asks for</h2>
-          <dl class="ask-list">
-            <div><dt>Your name</dt><dd>As you want it on the leaderboard.</dd></div>
-            <div><dt>Your school email</dt><dd><strong>Not a personal address.</strong> We use it to check that you're enrolled and to send you the brief.</dd></div>
-            <div><dt>Your school</dt><dd>Universities and colleges both count.</dd></div>
-            <div><dt>Your school's province or territory</dt><dd>This sets your regional leaderboard.</dd></div>
-            <div><dt>Your year of study</dt><dd>First year to graduate school.</dd></div>
-          </dl>
-        </section>
-
-        <section class="reg-block" aria-labelledby="confirm-h">
-          <h2 id="confirm-h" class="reg-h2">You'll confirm that</h2>
-          <ul class="included">
-            <li>You're enrolled at a Canadian university or college</li>
-            <li>You'll build your entry on your own</li>
-            <li>You agree to the <a href="/rules">Official Rules</a> and the <a href="/conduct">Code of Conduct</a></li>
-          </ul>
-        </section>
-
-        <div class="submit-row">
-          <a href="{{ pay_url }}" class="btn btn-dark btn-lg" data-pay-link>Continue to payment</a>
-          <p class="small">You'll pay {{ event.price_label }} CAD on Stripe's secure checkout. Have a free-entry code? Add it there.</p>
-        </div>
-      {% endif %}
+      <div class="submit-row">
+        <button type="button" class="btn btn-dark btn-lg" data-interest-link data-href="{{ event.interest_url }}" disabled>Continue to the interest form</button>
+        <noscript><p class="small">This page needs JavaScript to confirm the boxes above. If you can't turn it on, email <a href="mailto:{{ settings.contact_email }}">{{ settings.contact_email }}</a> and we'll add you by hand.</p></noscript>
       </div>
     </div>
   </div>
@@ -76,5 +42,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ static('js/referral.js') }}" defer></script>
+<script src="{{ static('js/interest.js') }}" defer></script>
 {% endblock %}

@@ -215,8 +215,8 @@ p {
   color: var(--accent);
 }
 .btn[disabled] {
-  opacity: 0.7;
-  cursor: progress;
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 .text-link {
   font-weight: 600;
@@ -558,7 +558,8 @@ p {
 .briefs td:first-child {
   font-weight: 800;
   font-size: 20px;
-  white-space: nowrap;
+  width: 26%;
+  min-width: 190px;
 }
 .briefs td:nth-child(2) {
   color: var(--soft-dark);
@@ -1127,18 +1128,52 @@ p {
   border-top: 0;
 }
 
-/* Registration window: state.js sets html[data-reg]; without JavaScript the "open" content shows. */
-html[data-reg="open"] .when-not-open,
-html[data-reg="open"] .when-closed,
-html[data-reg="not_open"] .when-open,
-html[data-reg="not_open"] .when-closed,
-html[data-reg="closed"] .when-open,
-html[data-reg="closed"] .when-not-open,
-html:not([data-reg]) .when-not-open,
-html:not([data-reg]) .when-closed {
-  display: none !important;
+/* Screen-reader-only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-/* Before registration opens, hide the Enter buttons (their "Register interest" twins show instead). */
-html[data-reg="not_open"] .unless-not-open {
-  display: none !important;
+
+/* Consent checkboxes on the interest page */
+.consent {
+  border: 0;
+  padding: 0;
+  margin: 0 0 20px;
+}
+.consent label {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line-light);
+  font-size: 17px;
+  cursor: pointer;
+}
+.consent label:first-of-type {
+  border-top: 1px solid var(--line-light);
+}
+.consent input {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin: 2px 0 0;
+  accent-color: var(--ink);
+}
+.consent input:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.site-footer .footer-legal {
+  flex: 1 0 100%;
+  margin: 0;
+  max-width: 70ch;
+  color: var(--faint-dark);
 }
